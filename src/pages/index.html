@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HomeTools - Quality Tools for Your Home</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+      integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/src/output.css" />
+    <link rel="stylesheet" href="index.css" />
+    <style>
+      .cta {
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+          url("https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
+        background-size: cover;
+        background-position: center;
+        color: white;
+        text-align: center;
+        padding: 100px 0;
+      }
+
+      .cta h2 {
+        font-size: 36px;
+        margin-bottom: 20px;
+      }
+
+      .cta p {
+        font-size: 18px;
+        margin-bottom: 30px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .tab-btn {
+        background-color: #f3f4f6; /* gray-100 */
+        color: #374151; /* gray-700 */
+      }
+      .tab-btn:hover {
+        background-color: #e5e7eb; /* gray-200 */
+      }
+      .tab-btn.active {
+        background-color: #2563eb; /* blue-600 */
+        color: white;
+        box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+      }
+
+      .active-link {
+        position: relative;
+        color: #3b82f6;
+      }
+      .active-link::after {
+        content: "";
+        position: absolute;
+        bottom: -6px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background-color: #3b82f6;
+        border-radius: 9999px;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 text-gray-800">
+    <header class="bg-white shadow-lg sticky top-0 z-30">
+      <div
+        class="max-w-screen-xl mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <a
+          href="./index.html"
+          class="flex items-center gap-3 text-xl sm:text-2xl font-bold text-blue-600"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-8 w-8 text-blue-500"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path
+              d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM17 18c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-1.8-5.3L15.4 14l-.9-1.5H7.4L5.4 5.2c-.27-.71-.99-1.2-1.78-1.2-.99 0-1.8.81-1.8 1.8 0 .99.81 1.8 1.8 1.8h9.2l1.9-4.7c.3-.7.97-1.1 1.74-1.1.99 0 1.8.81 1.8 1.8 0 .99-.81 1.8-1.8 1.8h-2.1l-.8 2H16.2c1.1 0 1.99.9 1.99 2 0 .55-.22 1.05-.58 1.41L15.2 17H8.7c-1.1 0-1.99-.9-1.99-2 0-.55.22-1.05.58-1.41L7 13.7zm1.8-4.7H17l-1.9-4.7H7.4L5.4 5.2H16.2z"
+            />
+          </svg>
+          My Store
+        </a>
+
+        <nav
+          class="hidden md:flex items-center gap-8 text-gray-600 font-medium"
+        >
+          <a
+            href="./index.html"
+            class="hover:text-blue-500 transition-colors duration-200"
+            >Home</a
+          >
+          <a
+            href="./product/products.html"
+            class="hover:text-blue-500 transition-colors duration-200"
+            >Products</a
+          >
+          <a
+            href="./about/about.html"
+            class="hover:text-blue-500 transition-colors duration-200"
+            >About</a
+          >
+          <a
+            href="./contact/contact.html"
+            class="hover:text-blue-500 transition-colors duration-200"
+            >Contact</a
+          >
+        </nav>
+
+        <div class="flex items-center gap-5">
+          <a
+            href="#"
+            id="add-product-btn-desktop"
+            class="text-white bg-blue-600 px-4 py-2 rounded-md font-semibold hover:bg-blue-700 transition-colors"
+          >
+            <i class="fa-solid fa-plus-circle mr-2"></i>Add Product
+          </a>
+          <a
+            href="/src/pages/about/profile.html"
+            class="hidden sm:block text-gray-600 hover:text-blue-500 transition-colors"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-8 w-8"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08s5.97 1.09 6 3.08c-1.29 1.94-3.5 3.22-6 3.22z"
+              />
+            </svg>
+          </a>
+          <button
+            id="menu-btn"
+            aria-label="Open Menu"
+            class="md:hidden focus:outline-none"
+          >
+            <svg
+              class="w-8 h-8 text-gray-700"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div
+      id="overlay"
+      class="fixed inset-0 bg-black bg-opacity-50 hidden z-20"
+    ></div>
+
+    <nav
+      id="mobile-menu"
+      class="fixed top-0 left-0 h-full w-64 bg-white shadow-md transform -translate-x-full transition-transform duration-300 ease-in-out z-30 flex flex-col pt-6"
+    >
+      <button
+        id="close-btn"
+        aria-label="Close Menu"
+        class="self-end m-4 focus:outline-none"
+      >
+        <svg
+          class="w-6 h-6 text-gray-600"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
+
+      <div class="px-6 py-4 border-b border-gray-200 mb-4">
+        <a
+          href="/src/pages/about/profile.html"
+          class="flex items-center gap-3 text-gray-800 hover:text-blue-500 transition-colors"
+        >
+          <svg
+            class="h-8 w-8 text-blue-500"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08s5.97 1.09 6 3.08c-1.29 1.94-3.5 3.22-6 3.22z"
+            />
+          </svg>
+          <span class="text-lg font-semibold">Profile</span>
+        </a>
+      </div>
+
+      <a
+        href="#"
+        id="add-product-link-mobile"
+        class="hidden px-6 py-3 bg-blue-600 text-white hover:bg-blue-700 font-medium"
+      >
+        <i class="fa-solid fa-plus-circle mr-2"></i>Add Product
+      </a>
+
+      <a href="./index.html" class="px-6 py-3 hover:bg-gray-100 font-medium"
+        >Home</a
+      >
+      <a
+        href="./product/products.html"
+        class="px-6 py-3 hover:bg-gray-100 font-medium"
+        >Products</a
+      >
+      <a
+        href="./about/about.html"
+        class="px-6 py-3 hover:bg-gray-100 font-medium"
+        >About</a
+      >
+      <a
+        href="./contact/contact.html"
+        class="px-6 py-3 hover:bg-gray-100 font-medium"
+        >Contact</a
+      >
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="max-w-xl mx-auto mb-10 relative">
+          <input
+            type="text"
+            placeholder="Search product..."
+            class="w-full px-5 py-3 rounded-full border border-gray-300 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <button
+            class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-blue-500 hover:bg-blue-600 text-black px-5 py-2 rounded-full transition"
+          >
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+        <div class="hero-content">
+          <h1>Quality Tools for Your Home</h1>
+          <p>
+            Discover our premium collection of home tools and equipment at
+            affordable prices
+          </p>
+          <a href="./product/products.html" class="btn">Shop Now</a>
+        </div>
+      </div>
+    </section>
+    <!-- Categories Section -->
+    <section class="py-16 bg-gray-50">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">
+          Shop by Category
+        </h2>
+
+        <!-- Categories Grid -->
+        <div
+          class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6"
+          id="category-grid"
+        >
+          <!-- Women -->
+          <div
+            data-category="women's clothing"
+            class="category-card group bg-white rounded-2xl shadow-md p-6 text-center hover:bg-blue-50 hover:shadow-xl transition transform hover:-translate-y-2 cursor-pointer"
+          >
+            <div
+              class="text-pink-500 text-5xl mb-3 group-hover:scale-110 transition"
+            >
+              <i class="fas fa-female"></i>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-700">
+              Women's Clothing
+            </h3>
+          </div>
+
+          <!-- Men -->
+          <div
+            data-category="men's clothing"
+            class="category-card group bg-white rounded-2xl shadow-md p-6 text-center hover:bg-blue-50 hover:shadow-xl transition transform hover:-translate-y-2 cursor-pointer"
+          >
+            <div
+              class="text-green-600 text-5xl mb-3 group-hover:scale-110 transition"
+            >
+              <i class="fas fa-male"></i>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-700">Men's Clothing</h3>
+          </div>
+
+          <!-- Electronics -->
+          <div
+            data-category="electronics"
+            class="category-card group bg-white rounded-2xl shadow-md p-6 text-center hover:bg-blue-50 hover:shadow-xl transition transform hover:-translate-y-2 cursor-pointer"
+          >
+            <div
+              class="text-yellow-500 text-5xl mb-3 group-hover:scale-110 transition"
+            >
+              <i class="fas fa-tv"></i>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-700">Electronics</h3>
+          </div>
+
+          <!-- Jewelry -->
+          <div
+            data-category="jewelery"
+            class="category-card group bg-white rounded-2xl shadow-md p-6 text-center hover:bg-blue-50 hover:shadow-xl transition transform hover:-translate-y-2 cursor-pointer"
+          >
+            <div
+              class="text-purple-600 text-5xl mb-3 group-hover:scale-110 transition"
+            >
+              <i class="fas fa-gem"></i>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-700">Jewelry</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="container mx-auto pt-0 pb-8 mt-0">
+      <h2 class="section-title text-2xl font-bold mb-6">Our Products</h2>
+
+      <!-- Tabs -->
+      <div class="flex gap-4 mb-6 justify-center">
+        <button
+          id="btn-new"
+          class="tab-btn active px-5 py-2 rounded-lg font-semibold transition-all"
+        >
+          New Products
+        </button>
+        <button
+          id="btn-top"
+          class="tab-btn px-5 py-2 rounded-lg font-semibold transition-all"
+        >
+          Top Products
+        </button>
+        <button
+          id="btn-popular"
+          class="tab-btn px-5 py-2 rounded-lg font-semibold transition-all"
+        >
+          Popular
+        </button>
+      </div>
+
+      <!-- Product List -->
+      <div
+        id="products-container"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+      >
+        <!-- Products will be loaded dynamically -->
+      </div>
+    </section>
+
+    <!-- product deatail -->
+    <div
+      id="detail-modal"
+      class="fixed inset-0 bg-gray-600 bg-opacity-50 z-50 hidden flex justify-center items-center p-4"
+    >
+      <div
+        class="bg-white rounded-lg shadow-xl w-full max-w-2xl transform transition-all duration-300"
+      >
+        <div class="p-6">
+          <div class="flex justify-between items-center border-b pb-3 mb-4">
+            <h2 class="text-2xl font-semibold">Product Details</h2>
+            <button
+              id="close-modal-btn"
+              class="text-gray-500 hover:text-gray-800 transition-colors"
+            >
+              <i class="fa-solid fa-times text-2xl"></i>
+            </button>
+            <button
+              id="closeModal"
+              class="absolute top-6 right-3 text-gray-600 hover:text-black"
+            ></button>
+          </div>
+          <div id="detail-content"></div>
+        </div>
+      </div>
+    </div>
+
+    <section class="cta">
+      <div class="container">
+        <h2>Ready to Start Selling?</h2>
+        <p>
+          Join our marketplace of independent sellers and reach thousands of
+          fashion lovers worldwide. Set up your shop in minutes and start
+          selling your clothing items today.
+        </p>
+        <a href="./contact/contact.html" class="btn" style="margin-top: 30px"
+          >Contact us</a
+        >
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-300 py-12 mt-12">
+      <div
+        class="max-w-screen-xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8"
+      >
+        <div class="md:col-span-2">
+          <h3 class="text-xl font-bold text-white mb-4">My Store</h3>
+          <p class="text-gray-400 mb-4">
+            Your one-stop shop for amazing products. We are dedicated to
+            providing the best customer experience.
+          </p>
+          <div class="flex space-x-4">
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white transition-colors"
+            >
+              <i class="fa-brands fa-facebook-f text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white transition-colors"
+            >
+              <i class="fa-brands fa-instagram text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white transition-colors"
+            >
+              <i class="fa-brands fa-twitter text-xl"></i>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-white mb-4">Quick Links</h3>
+          <ul class="space-y-2">
+            <li>
+              <a
+                href="/src/pages/index.html"
+                class="hover:text-white transition-colors"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="/src/pages/product/products.html"
+                class="hover:text-white transition-colors"
+                >Products</a
+              >
+            </li>
+            <li>
+              <a
+                href="/src/pages/about/about.html"
+                class="hover:text-white transition-colors"
+                >About</a
+              >
+            </li>
+            <li>
+              <a
+                href="./contact.html"
+                class="hover:text-white transition-colors"
+                >Contact</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-white mb-4">
+            Customer Service
+          </h3>
+          <ul class="space-y-2">
+            <li>
+              <a href="#" class="hover:text-white transition-colors">FAQs</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-white transition-colors"
+                >Shipping & Returns</a
+              >
+            </li>
+            <li>
+              <a href="#" class="hover:text-white transition-colors"
+                >Privacy Policy</a
+              >
+            </li>
+            <li>
+              <a href="#" class="hover:text-white transition-colors"
+                >Terms of Service</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-white mb-4">Newsletter</h3>
+          <p class="text-gray-400 mb-4">
+            Get updates on new products and promotions.
+          </p>
+          <form action="#" class="flex flex-col sm:flex-row gap-2">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              class="px-4 py-2 rounded-md border border-gray-600 bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
+            />
+            <button
+              type="submit"
+              class="bg-blue-600 text-white px-6 py-2 rounded-md font-medium hover:bg-blue-700 transition-colors"
+            >
+              Subscribe
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div
+        class="max-w-screen-xl mx-auto px-4 mt-12 text-center text-gray-500 text-sm border-t border-gray-700 pt-6"
+      >
+        © 2025 My Store. All rights reserved.
+      </div>
+    </footer>
+    <script src="/src/script/index.js"></script>
+    <script>
+      const menuBtn = document.getElementById("menu-btn");
+      const closeBtn = document.getElementById("close-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const overlay = document.getElementById("overlay");
+      const navLinks = document.querySelectorAll("header nav a");
+
+      // Open menu
+      menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.remove("-translate-x-full");
+        mobileMenu.setAttribute("aria-hidden", "false");
+        overlay.classList.remove("hidden");
+      });
+
+      // Close menu
+      closeBtn.addEventListener("click", closeMenu);
+      overlay.addEventListener("click", closeMenu);
+
+      function closeMenu() {
+        mobileMenu.classList.add("-translate-x-full");
+        mobileMenu.setAttribute("aria-hidden", "true");
+        overlay.classList.add("hidden");
+      }
+
+      // Add active state to current link
+      navLinks.forEach((link) => {
+        link.addEventListener("click", function (event) {
+          navLinks.forEach((item) => item.classList.remove("active-link"));
+          this.classList.add("active-link");
+          // close the mobile menu after clicking a link
+          closeMenu();
+        });
+      });
+
+      // You can add logic here to set the active link on page load
+      // For example:
+      const currentPath = window.location.pathname;
+      navLinks.forEach((link) => {
+        if (link.getAttribute("href") === "#" + currentPath.substring(1)) {
+          link.classList.add("active-link");
+        }
+      });
+    </script>
+  </body>
+</html>

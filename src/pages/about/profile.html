@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+      integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/src/output.css" />
+    <style>
+      .active-link {
+        position: relative;
+        color: #3b82f6;
+      }
+      .active-link::after {
+        content: "";
+        position: absolute;
+        bottom: -6px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background-color: #3b82f6;
+        border-radius: 9999px;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 text-gray-800">
+    <header class="bg-white shadow-lg sticky top-0 z-30">
+      <div
+        class="max-w-screen-xl mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <a
+          href="./index.html"
+          class="flex items-center gap-3 text-xl sm:text-2xl font-bold text-blue-600"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-8 w-8 text-blue-500"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path
+              d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM17 18c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-1.8-5.3L15.4 14l-.9-1.5H7.4L5.4 5.2c-.27-.71-.99-1.2-1.78-1.2-.99 0-1.8.81-1.8 1.8 0 .99.81 1.8 1.8 1.8h9.2l1.9-4.7c.3-.7.97-1.1 1.74-1.1.99 0 1.8.81 1.8 1.8 0 .99-.81 1.8-1.8 1.8h-2.1l-.8 2H16.2c1.1 0 1.99.9 1.99 2 0 .55-.22 1.05-.58 1.41L15.2 17H8.7c-1.1 0-1.99-.9-1.99-2 0-.55.22-1.05.58-1.41L7 13.7zm1.8-4.7H17l-1.9-4.7H7.4L5.4 5.2H16.2z"
+            />
+          </svg>
+          My Store
+        </a>
+
+        <nav
+          class="hidden md:flex items-center gap-8 text-gray-600 font-medium"
+        >
+          <a
+            href="/src/pages/index.html"
+            class="hover:text-blue-500 transition-colors duration-200"
+            >Home</a
+          >
+          <a
+            href="/src/pages/product/products.html"
+            class="hover:text-blue-500 transition-colors duration-200"
+            >Products</a
+          >
+          <a
+            href="./about.html"
+            class="hover:text-blue-500 transition-colors duration-200"
+            >About</a
+          >
+          <a
+            href="/src/pages/contact/contact.html"
+            class="hover:text-blue-500 transition-colors duration-200"
+            >Contact</a
+          >
+        </nav>
+
+        <div class="flex items-center gap-5">
+          <a
+            href="#"
+            id="add-product-btn-desktop"
+            class="text-white bg-blue-600 px-4 py-2 rounded-md font-semibold hover:bg-blue-700 transition-colors"
+          >
+            <i class="fa-solid fa-plus-circle mr-2"></i>Add Product
+          </a>
+          <a
+            href="./src/pages/about/profile.html"
+            class="hidden sm:block text-gray-600 hover:text-blue-500 transition-colors"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-8 w-8"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08s5.97 1.09 6 3.08c-1.29 1.94-3.5 3.22-6 3.22z"
+              />
+            </svg>
+          </a>
+          <button
+            id="menu-btn"
+            aria-label="Open Menu"
+            class="md:hidden focus:outline-none"
+          >
+            <svg
+              class="w-8 h-8 text-gray-700"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div
+      id="overlay"
+      class="fixed inset-0 bg-black bg-opacity-50 hidden z-20"
+    ></div>
+
+    <nav
+      id="mobile-menu"
+      class="fixed top-0 left-0 h-full w-64 bg-white shadow-md transform -translate-x-full transition-transform duration-300 ease-in-out z-30 flex flex-col pt-6"
+    >
+      <button
+        id="close-btn"
+        aria-label="Close Menu"
+        class="self-end m-4 focus:outline-none"
+      >
+        <svg
+          class="w-6 h-6 text-gray-600"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
+
+      <div class="px-6 py-4 border-b border-gray-200 mb-4">
+        <a
+          href=".profile.html"
+          class="flex items-center gap-3 text-gray-800 hover:text-blue-500 transition-colors"
+        >
+          <svg
+            class="h-8 w-8 text-blue-500"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08s5.97 1.09 6 3.08c-1.29 1.94-3.5 3.22-6 3.22z"
+            />
+          </svg>
+          <span class="text-lg font-semibold">Profile</span>
+        </a>
+      </div>
+
+      <a
+        href="#"
+        id="add-product-link-mobile"
+        class="hidden px-6 py-3 bg-blue-600 text-white hover:bg-blue-700 font-medium"
+      >
+        <i class="fa-solid fa-plus-circle mr-2"></i>Add Product
+      </a>
+
+      <a
+        href="/src/pages/index.html"
+        class="px-6 py-3 hover:bg-gray-100 font-medium"
+        >Home</a
+      >
+      <a
+        href="/src/pages/product/products.html"
+        class="px-6 py-3 hover:bg-gray-100 font-medium"
+        >Products</a
+      >
+      <a
+        href="/src/pages/about/about.html"
+        class="px-6 py-3 hover:bg-gray-100 font-medium"
+        >About</a
+      >
+      <a
+        href="/src/pages/contact/contact.html"
+        class="px-6 py-3 hover:bg-gray-100 font-medium"
+        >Contact</a
+      >
+    </nav>
+    <section class="w-full overflow-hidden dark:bg-gray-900">
+      <div class="flex flex-col">
+        <!-- Cover Image -->
+        <img
+          src="/src/images/photo_2025-08-04_15-35-52.jpg"
+          alt="User Cover"
+          class="w-full xl:h-[20rem] lg:h-[18rem] md:h-[16rem] sm:h-[14rem] h-[11rem]"
+        />
+
+        <!-- Profile Image -->
+        <div class="lg:w-[80%] w-[90%] mx-auto flex">
+          <img
+            src="/src/images/photo_2025-08-21_22-45-08.jpg"
+            alt="User Profile"
+            class="rounded-full lg:w-[18rem] lg:h-[18rem] md:w-[10rem] md:h-[10rem] sm:w-[8rem] sm:h-[8rem] w-[7rem] h-[7rem] outline outline-2 outline-offset-2 outline-blue-500 relative lg:bottom-[5rem] sm:bottom-[4rem] bottom-[3rem]"
+          />
+
+          <h1
+            class="w-full text-left my-4 sm:mx-4 pl-4 text-gray-800 dark:text-white lg:text-4xl md:text-3xl sm:text-3xl text-xl font-serif"
+          >
+            Chhay Davin
+          </h1>
+        </div>
+
+        <div
+          class="xl:w-[80%] lg:w-[90%] md:w-[90%] sm:w-[92%] w-[90%] mx-auto flex flex-col gap-4 items-center relative lg:-top-8 md:-top-6 -top-4"
+        >
+          <!-- Description -->
+          <p class="w-fit text-gray-700 dark:text-gray-400 text-md">
+            I am a IT student at ISTAD with hands-on experience in both
+            front-end and back-end web development. I have built several
+            responsive websites using HTML, CSS, JavaScript, and Tailwind CSS,
+            and have experience working on real-world projects during my
+            coursework and personal practice. I’m confident in designing clean
+            user interfaces, writing structured code, and collaborating with
+            others to solve problems and create engaging digital experiences.
+            Eager to keep learning and contribute to real-world development
+            teams through internships or junior-level roles
+          </p>
+
+          <!-- Detail -->
+          <div class="w-full my-auto py-6 flex flex-col justify-center gap-2">
+            <div class="w-full flex sm:flex-row flex-col gap-2 justify-center">
+              <div class="w-full">
+                <dl
+                  class="text-gray-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700"
+                >
+                  <div class="flex flex-col pb-3">
+                    <dt
+                      class="mb-1 text-gray-500 md:text-lg dark:text-gray-400"
+                    >
+                      First Name
+                    </dt>
+                    <dd class="text-lg font-semibold">Chhay</dd>
+                  </div>
+                  <div class="flex flex-col py-3">
+                    <dt
+                      class="mb-1 text-gray-500 md:text-lg dark:text-gray-400"
+                    >
+                      Last Name
+                    </dt>
+                    <dd class="text-lg font-semibold">Davin</dd>
+                  </div>
+                  <div class="flex flex-col py-3">
+                    <dt
+                      class="mb-1 text-gray-500 md:text-lg dark:text-gray-400"
+                    >
+                      Date Of Birth
+                    </dt>
+                    <dd class="text-lg font-semibold">15/12/2006</dd>
+                  </div>
+                  <div class="flex flex-col py-3">
+                    <dt
+                      class="mb-1 text-gray-500 md:text-lg dark:text-gray-400"
+                    >
+                      Gender
+                    </dt>
+                    <dd class="text-lg font-semibold">Male</dd>
+                  </div>
+                </dl>
+              </div>
+              <div class="w-full">
+                <dl
+                  class="text-gray-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700"
+                >
+                  <div class="flex flex-col pb-3">
+                    <dt
+                      class="mb-1 text-gray-500 md:text-lg dark:text-gray-400"
+                    >
+                      Location
+                    </dt>
+                    <dd class="text-lg font-semibold">
+                      Phnom Penh, Pouh Senchey, Phum Ta Nguon
+                    </dd>
+                  </div>
+
+                  <div class="flex flex-col pt-3">
+                    <dt
+                      class="mb-1 text-gray-500 md:text-lg dark:text-gray-400"
+                    >
+                      Phone Number
+                    </dt>
+                    <dd class="text-lg font-semibold">+885 81528714</dd>
+                  </div>
+                  <div class="flex flex-col pt-3">
+                    <dt
+                      class="mb-1 text-gray-500 md:text-lg dark:text-gray-400"
+                    >
+                      Email
+                    </dt>
+                    <dd class="text-lg font-semibold">
+                      davinchhayml@gmail.com
+                    </dd>
+                  </div>
+
+                  <div class="flex flex-col pt-3">
+                    <dt
+                      class="mb-1 text-gray-500 md:text-lg dark:text-gray-400"
+                    >
+                      Website
+                    </dt>
+                    <dd class="text-lg font-semibold hover:text-blue-500">
+                      <a href="/src/pages/index.html"
+                        >Mini-project-ecommerce-ashy.vercel.app</a
+                      >
+                    </dd>
+                  </div>
+                </dl>
+              </div>
+            </div>
+
+            <div class="my-10 lg:w-[70%] md:h-[14rem] w-full h-[10rem]">
+              <!--  -->
+              <h1
+                class="w-fit font-serif my-4 pb-1 pr-2 rounded-b-md border-b-4 border-blue-600 dark:border-b-4 dark:border-yellow-600 dark:text-white lg:text-4xl md:text-3xl text-xl"
+              >
+                My Location
+              </h1>
+
+              <!-- Location -->
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3908.8568489437976!2d104.84824107409835!3d11.562118244212348!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTHCsDMzJzQzLjYiTiAxMDTCsDUxJzAyLjkiRQ!5e0!3m2!1sen!2skh!4v1756045226644!5m2!1sen!2skh"
+                width="600"
+                height="450"
+                style="border: 0"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </div>
+
+          <!-- Social Links -->
+          <div
+            class="fixed right-2 bottom-20 flex flex-col rounded-sm bg-gray-200 text-gray-500 dark:bg-gray-200/80 dark:text-gray-700 hover:text-gray-600 hover:dark:text-gray-400"
+          >
+            <a href="https://www.linkedin.com/in/samuel-abera-6593a2209/">
+              <div class="p-2 hover:text-primary hover:dark:text-primary">
+                <svg
+                  class="lg:w-6 lg:h-6 w-4 h-4 text-blue-500"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M12.51 8.796v1.697a3.738 3.738 0 0 1 3.288-1.684c3.455 0 4.202 2.16 4.202 4.97V19.5h-3.2v-5.072c0-1.21-.244-2.766-2.128-2.766-1.827 0-2.139 1.317-2.139 2.676V19.5h-3.19V8.796h3.168ZM7.2 6.106a1.61 1.61 0 0 1-.988 1.483 1.595 1.595 0 0 1-1.743-.348A1.607 1.607 0 0 1 5.6 4.5a1.601 1.601 0 0 1 1.6 1.606Z"
+                    clip-rule="evenodd"
+                  />
+                  <path d="M7.2 8.809H4V19.5h3.2V8.809Z" />
+                </svg>
+              </div>
+            </a>
+            <a href="https://twitter.com/Samuel7Abera7">
+              <div class="p-2 hover:text-primary hover:dark:text-primary">
+                <svg
+                  class="lg:w-6 lg:h-6 w-4 h-4 text-gray-900"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M13.795 10.533 20.68 2h-3.073l-5.255 6.517L7.69 2H1l7.806 10.91L1.47 22h3.074l5.705-7.07L15.31 22H22l-8.205-11.467Zm-2.38 2.95L9.97 11.464 4.36 3.627h2.31l4.528 6.317 1.443 2.02 6.018 8.409h-2.31l-4.934-6.89Z"
+                  />
+                </svg>
+              </div>
+            </a>
+            <a href="">
+              <div class="p-2 hover:text-blue-500 hover:dark:text-blue-500">
+                <svg
+                  class="lg:w-6 lg:h-6 w-4 h-4 text-blue-700"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M13.135 6H15V3h-1.865a4.147 4.147 0 0 0-4.142 4.142V9H7v3h2v9.938h3V12h2.021l.592-3H12V6.591A.6.6 0 0 1 12.592 6h.543Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </div>
+            </a>
+            <a href="https://www.youtube.com/@silentcoder7">
+              <div class="p-2 hover:text-primary hover:dark:text-primary">
+                <svg
+                  class="lg:w-6 lg:h-6 w-4 h-4 text-red-600"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M21.7 8.037a4.26 4.26 0 0 0-.789-1.964 2.84 2.84 0 0 0-1.984-.839c-2.767-.2-6.926-.2-6.926-.2s-4.157 0-6.928.2a2.836 2.836 0 0 0-1.983.839 4.225 4.225 0 0 0-.79 1.965 30.146 30.146 0 0 0-.2 3.206v1.5a30.12 30.12 0 0 0 .2 3.206c.094.712.364 1.39.784 1.972.604.536 1.38.837 2.187.848 1.583.151 6.731.2 6.731.2s4.161 0 6.928-.2a2.844 2.844 0 0 0 1.985-.84 4.27 4.27 0 0 0 .787-1.965 30.12 30.12 0 0 0 .2-3.206v-1.516a30.672 30.672 0 0 0-.202-3.206Zm-11.692 6.554v-5.62l5.4 2.819-5.4 2.801Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="bg-gray-800 text-gray-300 py-12 mt-12">
+      <div
+        class="max-w-screen-xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8"
+      >
+        <div class="md:col-span-2">
+          <h3 class="text-xl font-bold text-white mb-4">My Store</h3>
+          <p class="text-gray-400 mb-4">
+            Your one-stop shop for amazing products. We are dedicated to
+            providing the best customer experience.
+          </p>
+          <div class="flex space-x-4">
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white transition-colors"
+            >
+              <i class="fa-brands fa-facebook-f text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white transition-colors"
+            >
+              <i class="fa-brands fa-instagram text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white transition-colors"
+            >
+              <i class="fa-brands fa-twitter text-xl"></i>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-white mb-4">Quick Links</h3>
+          <ul class="space-y-2">
+            <li>
+              <a
+                href="/src/pages/index.html"
+                class="hover:text-white transition-colors"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="/src/pages/product/products.html"
+                class="hover:text-white transition-colors"
+                >Products</a
+              >
+            </li>
+            <li>
+              <a href="./about.html" class="hover:text-white transition-colors"
+                >About</a
+              >
+            </li>
+            <li>
+              <a
+                href="/src/pages/contact/contact.html"
+                class="hover:text-white transition-colors"
+                >Contact</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-white mb-4">
+            Customer Service
+          </h3>
+          <ul class="space-y-2">
+            <li>
+              <a href="#" class="hover:text-white transition-colors">FAQs</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-white transition-colors"
+                >Shipping & Returns</a
+              >
+            </li>
+            <li>
+              <a href="#" class="hover:text-white transition-colors"
+                >Privacy Policy</a
+              >
+            </li>
+            <li>
+              <a href="#" class="hover:text-white transition-colors"
+                >Terms of Service</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-white mb-4">Newsletter</h3>
+          <p class="text-gray-400 mb-4">
+            Get updates on new products and promotions.
+          </p>
+          <form action="#" class="flex flex-col sm:flex-row gap-2">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              class="px-4 py-2 rounded-md border border-gray-600 bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
+            />
+            <button
+              type="submit"
+              class="bg-blue-600 text-white px-6 py-2 rounded-md font-medium hover:bg-blue-700 transition-colors"
+            >
+              Subscribe
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div
+        class="max-w-screen-xl mx-auto px-4 mt-12 text-center text-gray-500 text-sm border-t border-gray-700 pt-6"
+      >
+        © 2025 My Store. All rights reserved.
+      </div>
+    </footer>
+    <script src="/src/script/product.js"></script>
+    <script>
+      const menuBtn = document.getElementById("menu-btn");
+      const closeBtn = document.getElementById("close-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const overlay = document.getElementById("overlay");
+      const navLinks = document.querySelectorAll("header nav a");
+
+      // Open menu
+      menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.remove("-translate-x-full");
+        mobileMenu.setAttribute("aria-hidden", "false");
+        overlay.classList.remove("hidden");
+      });
+
+      // Close menu
+      closeBtn.addEventListener("click", closeMenu);
+      overlay.addEventListener("click", closeMenu);
+
+      function closeMenu() {
+        mobileMenu.classList.add("-translate-x-full");
+        mobileMenu.setAttribute("aria-hidden", "true");
+        overlay.classList.add("hidden");
+      }
+
+      // Add active state to current link
+      navLinks.forEach((link) => {
+        link.addEventListener("click", function (event) {
+          navLinks.forEach((item) => item.classList.remove("active-link"));
+          this.classList.add("active-link");
+          // close the mobile menu after clicking a link
+          closeMenu();
+        });
+      });
+
+      // You can add logic here to set the active link on page load
+      // For example:
+      const currentPath = window.location.pathname;
+      navLinks.forEach((link) => {
+        if (link.getAttribute("href") === "#" + currentPath.substring(1)) {
+          link.classList.add("active-link");
+        }
+      });
+    </script>
+  </body>
+</html>

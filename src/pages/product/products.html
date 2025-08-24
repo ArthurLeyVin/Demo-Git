@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Products</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+      integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/src/output.css" />
+    <style>
+      .active-link {
+        position: relative;
+        color: #3b82f6;
+      }
+      .active-link::after {
+        content: "";
+        position: absolute;
+        bottom: -6px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background-color: #3b82f6;
+        border-radius: 9999px;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 text-gray-800">
+    <header class="bg-white shadow-lg sticky top-0 z-30">
+      <div
+        class="max-w-screen-xl mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <a
+          href="#"
+          class="flex items-center gap-3 text-xl sm:text-2xl font-bold text-blue-600"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-8 w-8 text-blue-500"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path
+              d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM17 18c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-1.8-5.3L15.4 14l-.9-1.5H7.4L5.4 5.2c-.27-.71-.99-1.2-1.78-1.2-.99 0-1.8.81-1.8 1.8 0 .99.81 1.8 1.8 1.8h9.2l1.9-4.7c.3-.7.97-1.1 1.74-1.1.99 0 1.8.81 1.8 1.8 0 .99-.81 1.8-1.8 1.8h-2.1l-.8 2H16.2c1.1 0 1.99.9 1.99 2 0 .55-.22 1.05-.58 1.41L15.2 17H8.7c-1.1 0-1.99-.9-1.99-2 0-.55.22-1.05.58-1.41L7 13.7zm1.8-4.7H17l-1.9-4.7H7.4L5.4 5.2H16.2z"
+            />
+          </svg>
+          My Store
+        </a>
+
+        <nav
+          class="hidden md:flex items-center gap-8 text-gray-600 font-medium"
+        >
+          <a
+            href="/src/pages/index.html"
+            class="hover:text-blue-500 transition-colors duration-200"
+            >Home</a
+          >
+          <a
+            href="./products.html"
+            class="hover:text-blue-500 transition-colors duration-200"
+            >Products</a
+          >
+          <a
+            href="/src/pages/about/about.html"
+            class="hover:text-blue-500 transition-colors duration-200"
+            >About</a
+          >
+          <a
+            href="/src/pages/contact/contact.html"
+            class="hover:text-blue-500 transition-colors duration-200"
+            >Contact</a
+          >
+        </nav>
+
+        <div class="flex items-center gap-5">
+          <a
+            href="#"
+            id="add-product-btn-desktop"
+            class="hidden text-white bg-blue-600 px-4 py-2 rounded-md font-semibold hover:bg-blue-700 transition-colors"
+          >
+            <i class="fa-solid fa-plus-circle mr-2"></i>Add Product
+          </a>
+
+          <a
+            href="/src/pages/about/profile.html"
+            class="hidden sm:block text-gray-600 hover:text-blue-500 transition-colors"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-8 w-8"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08s5.97 1.09 6 3.08c-1.29 1.94-3.5 3.22-6 3.22z"
+              />
+            </svg>
+          </a>
+          <button
+            id="menu-btn"
+            aria-label="Open Menu"
+            class="md:hidden focus:outline-none"
+          >
+            <svg
+              class="w-8 h-8 text-gray-700"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div
+      id="overlay"
+      class="fixed inset-0 bg-black bg-opacity-50 hidden z-20"
+    ></div>
+
+    <nav
+      id="mobile-menu"
+      class="fixed top-0 left-0 h-full w-64 bg-white shadow-md transform -translate-x-full transition-transform duration-300 ease-in-out z-30 flex flex-col pt-6"
+    >
+      <button
+        id="close-btn"
+        aria-label="Close Menu"
+        class="self-end m-4 focus:outline-none"
+      >
+        <svg
+          class="w-6 h-6 text-gray-600"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
+
+      <div class="px-6 py-4 border-b border-gray-200 mb-4">
+        <a
+          href="/src/pages/about/profile.html"
+          class="flex items-center gap-3 text-gray-800 hover:text-blue-500 transition-colors"
+        >
+          <svg
+            class="h-8 w-8 text-blue-500"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08s5.97 1.09 6 3.08c-1.29 1.94-3.5 3.22-6 3.22z"
+            />
+          </svg>
+          <span class="text-lg font-semibold">Profile</span>
+        </a>
+      </div>
+
+      <a
+        href="#"
+        id="add-product-link-mobile"
+        class="hidden px-6 py-3 bg-blue-600 text-white hover:bg-blue-700 font-medium"
+      >
+        <i class="fa-solid fa-plus-circle mr-2"></i>Add Product
+      </a>
+
+      <a
+        href="/src/pages/index.html"
+        class="px-6 py-3 hover:bg-gray-100 font-medium"
+        >Home</a
+      >
+      <a href="./products.html" class="px-6 py-3 hover:bg-gray-100 font-medium"
+        >Products</a
+      >
+      <a
+        href="/src/pages/about/about.html"
+        class="px-6 py-3 hover:bg-gray-100 font-medium"
+        >About</a
+      >
+      <a
+        href="/src/pages/contact/contact.css"
+        class="px-6 py-3 hover:bg-gray-100 font-medium"
+        >Contact</a
+      >
+    </nav>
+
+    <main class="max-w-screen-xl mx-auto px-4 mt-6">
+      <form
+        class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6"
+        role="search"
+      >
+        <h2 class="text-lg sm:text-xl font-semibold">Our Products</h2>
+        <div class="relative w-full sm:w-72">
+          <label for="search" class="sr-only">Search products</label>
+          <input
+            id="search"
+            type="search"
+            placeholder="Search products..."
+            class="w-full px-4 py-2 pl-10 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <button
+            type="submit"
+            class="absolute inset-y-0 left-0 flex items-center px-3 text-gray-400 focus:outline-none"
+          >
+            <svg
+              class="h-5 w-5"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+            <span class="sr-only">Search</span>
+          </button>
+        </div>
+      </form>
+      <section
+        id="product-container"
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+      ></section>
+    </main>
+
+    <div
+      id="detail-modal"
+      class="fixed inset-0 bg-gray-600 bg-opacity-50 z-50 hidden flex justify-center items-center p-4"
+    >
+      <div
+        class="bg-white rounded-lg shadow-xl w-full max-w-2xl transform transition-all duration-300"
+      >
+        <div class="p-6">
+          <div class="flex justify-between items-center border-b pb-3 mb-4">
+            <h2 class="text-2xl font-semibold">Product Details</h2>
+            <button
+              id="close-modal-btn"
+              class="text-gray-500 hover:text-gray-800 transition-colors"
+            >
+              <i class="fa-solid fa-times text-2xl"></i>
+            </button>
+            <button
+              id="closeModal"
+              class="absolute top-6 right-3 text-gray-600 hover:text-black"
+            ></button>
+          </div>
+          <div id="detail-content"></div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="bg-gray-800 text-gray-300 py-12 mt-12">
+      <div
+        class="max-w-screen-xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8"
+      >
+        <div class="md:col-span-2">
+          <h3 class="text-xl font-bold text-white mb-4">My Store</h3>
+          <p class="text-gray-400 mb-4">
+            Your one-stop shop for amazing products. We are dedicated to
+            providing the best customer experience.
+          </p>
+          <div class="flex space-x-4">
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white transition-colors"
+            >
+              <i class="fa-brands fa-facebook-f text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white transition-colors"
+            >
+              <i class="fa-brands fa-instagram text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white transition-colors"
+            >
+              <i class="fa-brands fa-twitter text-xl"></i>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-white mb-4">Quick Links</h3>
+          <ul class="space-y-2">
+            <li>
+              <a
+                href="/src/pages/index.html"
+                class="hover:text-white transition-colors"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="/src/pages/product/products.html"
+                class="hover:text-white transition-colors"
+                >Products</a
+              >
+            </li>
+            <li>
+              <a
+                href="/src/pages/about/about.html"
+                class="hover:text-white transition-colors"
+                >About</a
+              >
+            </li>
+            <li>
+              <a
+                href="./contact.html"
+                class="hover:text-white transition-colors"
+                >Contact</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-white mb-4">
+            Customer Service
+          </h3>
+          <ul class="space-y-2">
+            <li>
+              <a href="#" class="hover:text-white transition-colors">FAQs</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-white transition-colors"
+                >Shipping & Returns</a
+              >
+            </li>
+            <li>
+              <a href="#" class="hover:text-white transition-colors"
+                >Privacy Policy</a
+              >
+            </li>
+            <li>
+              <a href="#" class="hover:text-white transition-colors"
+                >Terms of Service</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-white mb-4">Newsletter</h3>
+          <p class="text-gray-400 mb-4">
+            Get updates on new products and promotions.
+          </p>
+          <form action="#" class="flex flex-col sm:flex-row gap-2">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              class="px-4 py-2 rounded-md border border-gray-600 bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
+            />
+            <button
+              type="submit"
+              class="bg-blue-600 text-white px-6 py-2 rounded-md font-medium hover:bg-blue-700 transition-colors"
+            >
+              Subscribe
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div
+        class="max-w-screen-xl mx-auto px-4 mt-12 text-center text-gray-500 text-sm border-t border-gray-700 pt-6"
+      >
+        © 2025 My Store. All rights reserved.
+      </div>
+    </footer>
+    <script src="/src/script/product.js"></script>
+  </body>
+</html>
