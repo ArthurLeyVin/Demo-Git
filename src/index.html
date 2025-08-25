@@ -14,6 +14,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="/src/output.css" />
     <link rel="stylesheet" href="index.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <style>
       .cta {
         background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
@@ -251,7 +252,7 @@
             <i class="fas fa-search"></i>
           </button>
         </div>
-        <div class="hero-content">
+        <div class="hero-content" data-aos="fade-down">
           <h1>Quality Tools for Your Home</h1>
           <p>
             Discover our premium collection of home tools and equipment at
@@ -262,7 +263,7 @@
       </div>
     </section>
     <!-- Categories Section -->
-    <section class="py-16 bg-gray-50">
+    <section class="py-16 bg-gray-50" data-aos="zoom-in">
       <div class="max-w-6xl mx-auto px-6">
         <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">
           Shop by Category
@@ -360,6 +361,7 @@
       <div
         id="products-container"
         class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+        data-aos="zoom-out"
       >
         <!-- Products will be loaded dynamically -->
       </div>
@@ -392,7 +394,7 @@
       </div>
     </div>
 
-    <section class="cta">
+    <section class="cta" data-aos="zoom-out">
       <div class="container">
         <h2>Ready to Start Selling?</h2>
         <p>
@@ -567,6 +569,13 @@
         if (link.getAttribute("href") === "#" + currentPath.substring(1)) {
           link.classList.add("active-link");
         }
+      });
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 1000, // animation duration (ms)
+        once: true, // animation happens only once
       });
     </script>
   </body>

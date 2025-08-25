@@ -13,6 +13,7 @@
     />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="/src/output.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <style>
       .active-link {
         position: relative;
@@ -180,9 +181,7 @@
         <i class="fa-solid fa-plus-circle mr-2"></i>Add Product
       </a>
 
-      <a
-        href="/src/index.html"
-        class="px-6 py-3 hover:bg-gray-100 font-medium"
+      <a href="/src/index.html" class="px-6 py-3 hover:bg-gray-100 font-medium"
         >Home</a
       >
       <a
@@ -202,7 +201,7 @@
       >
     </nav>
     <section class="w-full overflow-hidden dark:bg-gray-900">
-      <div class="flex flex-col">
+      <div class="flex flex-col" data-aos="zoom-out-down">
         <!-- Cover Image -->
         <img
           src="/src/images/photo_2025-08-04_15-35-52.jpg"
@@ -596,6 +595,13 @@
         if (link.getAttribute("href") === "#" + currentPath.substring(1)) {
           link.classList.add("active-link");
         }
+      });
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 1000, // animation duration (ms)
+        once: true, // animation happens only once
       });
     </script>
   </body>

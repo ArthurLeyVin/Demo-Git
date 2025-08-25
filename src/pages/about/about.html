@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About Us - My Store</title>
-    
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
@@ -14,7 +14,7 @@
     />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="/src/output.css" />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <style>
       .active-link {
         position: relative;
@@ -182,9 +182,7 @@
         <i class="fa-solid fa-plus-circle mr-2"></i>Add Product
       </a>
 
-      <a
-        href="/src/index.html"
-        class="px-6 py-3 hover:bg-gray-100 font-medium"
+      <a href="/src/index.html" class="px-6 py-3 hover:bg-gray-100 font-medium"
         >Home</a
       >
       <a
@@ -205,8 +203,10 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="bg-blue-600 text-white py-24 text-center" >
-      <h1 class="text-4xl sm:text-5xl font-bold mb-4" data-aos="fade-down">About Us</h1>
+    <section class="bg-blue-600 text-white py-24 text-center">
+      <h1 class="text-4xl sm:text-5xl font-bold mb-4" data-aos="fade-down">
+        About Us
+      </h1>
       <p class="text-lg sm:text-xl max-w-2xl mx-auto" data-aos="fade-down">
         Learn more about My Store, our mission, and the team behind our success.
       </p>
@@ -214,7 +214,7 @@
 
     <!-- Mission Section -->
     <section class="py-16 bg-gray-50">
-      <div class="max-w-6xl mx-auto px-6 text-center">
+      <div class="max-w-6xl mx-auto px-6 text-center" data-aos="zoom-out">
         <h2 class="text-3xl font-bold mb-6">Our Mission</h2>
         <p class="text-gray-700 text-lg leading-relaxed">
           At My Store, our mission is to provide high-quality home tools at
@@ -228,8 +228,13 @@
     <!-- Values Section -->
     <section class="py-16">
       <div class="max-w-6xl mx-auto px-6 text-center">
-        <h2 class="text-3xl font-bold mb-12">Our Values</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <h2 class="text-3xl font-bold mb-12" data-aos="fade-down">
+          Our Values
+        </h2>
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+          data-aos="fade-up"
+        >
           <div
             class="bg-white p-6 rounded-xl shadow-md transform transition duration-300 ease-in-out hover:-translate-y-2 hover:shadow-2xl hover:bg-blue-50 cursor-pointer"
           >
@@ -265,7 +270,7 @@
     </section>
 
     <!-- Team Section -->
-    <section class="py-16 bg-gray-50">
+    <section class="py-16 bg-gray-50" data-aos="zoom-in-down">
       <div class="max-w-6xl mx-auto px-6 text-center">
         <h2 class="text-3xl font-bold mb-12">Meet the Team</h2>
         <div
@@ -482,11 +487,11 @@
       });
     </script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-  AOS.init({
-    duration: 1000, // animation duration (ms)
-    once: true,     // animation happens only once
-  });
-</script>
+    <script>
+      AOS.init({
+        duration: 1000, // animation duration (ms)
+        once: true, // animation happens only once
+      });
+    </script>
   </body>
 </html>

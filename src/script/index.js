@@ -19,7 +19,8 @@ const fetchProducts = async () => {
     showProducts();
   } catch (error) {
     console.error("Error fetching products:", error);
-    productContainer.innerHTML = "<p class='text-red-500'>Failed to load products.</p>";
+    productContainer.innerHTML =
+      "<p class='text-red-500'>Failed to load products.</p>";
   }
 };
 
@@ -28,7 +29,9 @@ const showProducts = (reset = true) => {
   if (reset) productsToShow = 4;
   const products = filteredProducts.slice(0, productsToShow);
 
-  productContainer.innerHTML = products.map(product => `
+  productContainer.innerHTML = products
+    .map(
+      (product) => `
     <div class="max-w-sm bg-white rounded-xl shadow-lg overflow-hidden flex flex-col 
             transform transition duration-300 ease-in-out 
             hover:-translate-y-2 hover:shadow-2xl hover:bg-blue-50 cursor-pointer">
@@ -47,7 +50,9 @@ const showProducts = (reset = true) => {
   </div>
 </div>
 
-  `).join("");
+  `
+    )
+    .join("");
 
   attachDetailEvents();
 
@@ -58,7 +63,8 @@ const showProducts = (reset = true) => {
       const loadMoreBtn = document.createElement("button");
       loadMoreBtn.id = "load-more-btn";
       loadMoreBtn.textContent = "Load More";
-      loadMoreBtn.className = "mt-6 px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition";
+      loadMoreBtn.className =
+        "mt-6 px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition";
       loadMoreBtn.addEventListener("click", () => {
         productsToShow += 4;
         showProducts(false);
@@ -73,7 +79,7 @@ const showProducts = (reset = true) => {
 // Attach detail modal events
 const attachDetailEvents = () => {
   const detailButtons = document.querySelectorAll(".detail-btn");
-  detailButtons.forEach(button => {
+  detailButtons.forEach((button) => {
     button.addEventListener("click", async () => {
       const id = button.getAttribute("data-id");
       const res = await fetch(`https://fakestoreapi.com/products/${id}`);
@@ -100,7 +106,9 @@ const attachDetailEvents = () => {
 };
 
 // Close modal
-closeModalBtn.addEventListener("click", () => detailModal.classList.add("hidden"));
+closeModalBtn.addEventListener("click", () =>
+  detailModal.classList.add("hidden")
+);
 detailModal.addEventListener("click", (e) => {
   if (e.target === detailModal) detailModal.classList.add("hidden");
 });
@@ -111,26 +119,30 @@ categoryGrid.addEventListener("click", (e) => {
   if (!card) return;
 
   const category = card.getAttribute("data-category");
-  filteredProducts = allProducts.filter(p => p.category === category);
+  filteredProducts = allProducts.filter((p) => p.category === category);
   showProducts();
 
   // Remove active from tabs
-  tabButtons.forEach(b => b.classList.remove("active"));
+  tabButtons.forEach((b) => b.classList.remove("active"));
 });
 
 // Tab buttons functionality
-tabButtons.forEach(btn => {
+tabButtons.forEach((btn) => {
   btn.addEventListener("click", () => {
-    tabButtons.forEach(b => b.classList.remove("active"));
+    tabButtons.forEach((b) => b.classList.remove("active"));
     btn.classList.add("active");
 
     const type = btn.id.replace("btn-", "");
     if (type === "new") {
       filteredProducts = [...allProducts];
     } else if (type === "top") {
-      filteredProducts = [...allProducts].sort((a, b) => b.rating.rate - a.rating.rate);
+      filteredProducts = [...allProducts].sort(
+        (a, b) => b.rating.rate - a.rating.rate
+      );
     } else if (type === "popular") {
-      filteredProducts = [...allProducts].sort((a, b) => b.rating.count - a.rating.count);
+      filteredProducts = [...allProducts].sort(
+        (a, b) => b.rating.count - a.rating.count
+      );
     }
 
     showProducts();
@@ -140,8 +152,10 @@ tabButtons.forEach(btn => {
 // Search functionality
 searchInput.addEventListener("input", () => {
   const query = searchInput.value.toLowerCase().trim();
-  filteredProducts = allProducts.filter(p =>
-    p.title.toLowerCase().includes(query) || p.description.toLowerCase().includes(query)
+  filteredProducts = allProducts.filter(
+    (p) =>
+      p.title.toLowerCase().includes(query) ||
+      p.description.toLowerCase().includes(query)
   );
   showProducts();
 });

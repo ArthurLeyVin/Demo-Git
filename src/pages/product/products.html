@@ -13,6 +13,7 @@
     />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="/src/output.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <style>
       .active-link {
         position: relative;
@@ -181,9 +182,7 @@
         <i class="fa-solid fa-plus-circle mr-2"></i>Add Product
       </a>
 
-      <a
-        href="/src/index.html"
-        class="px-6 py-3 hover:bg-gray-100 font-medium"
+      <a href="/src/index.html" class="px-6 py-3 hover:bg-gray-100 font-medium"
         >Home</a
       >
       <a href="./products.html" class="px-6 py-3 hover:bg-gray-100 font-medium"
@@ -237,6 +236,7 @@
       </form>
       <section
         id="product-container"
+        data-aos="zoom-out-down"
         class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
       ></section>
     </main>
@@ -387,5 +387,12 @@
       </div>
     </footer>
     <script src="/src/script/product.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 1000, // animation duration (ms)
+        once: true, // animation happens only once
+      });
+    </script>
   </body>
 </html>
